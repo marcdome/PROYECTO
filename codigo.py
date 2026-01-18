@@ -4,7 +4,7 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-PLATAFORMA = {1: "play-station-5", 2: "pc", 3: "xbox-series-x", 4: "nintendo-switch-2"}
+PLATAFORMA = {1: "playstation-5", 2: "pc", 3: "xbox-series-x", 4: "nintendo-switch-2"}
 # Primera pagina web
 
 juego = input("Dime el juego que quieres buscar: ")
