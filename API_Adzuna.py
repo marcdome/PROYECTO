@@ -3,29 +3,17 @@ import pandas as pd
 import time
 import json
 
-API_KEY = "" # Hay que poner las claves personales 
-API_ID = ""
+API_KEY = "0e620dd5d98d157004f1cd3dc1c5ba29" # Hay que poner las claves personales 
+API_ID = "99936c6b"
 
 
 # Lista de lenguajes y búsquedas precisas para la API
-lenguajes = {
-    "Python": "Python",
-    "Java": "Java",
-    "JavaScript": "JavaScript",
-    "SQL": "SQL",
-    "PHP": "PHP",
-    "TypeScript": "TypeScript",
-    "Kotlin": "Kotlin",
-    "Rust": "Rust",
-    "R": "R",
-    "Ruby": "Ruby",
-    "Go": "Go",
-    "C++": "C++"}
 
-
+csv = pd.read_csv("tiobe_lenguajes.csv")
+lenguajes = csv["Lenguaje"]
 datos = []
 
-for tech, busc in lenguajes.items():
+for tech in lenguajes:
     pagina = 1
     total_ofertas = 0
 
@@ -34,7 +22,7 @@ for tech, busc in lenguajes.items():
         params = {
             "app_id": API_ID,
             "app_key": API_KEY,
-            "what": busc,
+            "what": tech,
             "results_per_page": 50
         }
 
