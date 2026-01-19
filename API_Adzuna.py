@@ -74,4 +74,3 @@ for tech, busc in lenguajes.items():
 
 df = pd.DataFrame(datos)
 df.to_csv("data/adzuna_lenguajes.csv", index=False)
-print(df.head())
