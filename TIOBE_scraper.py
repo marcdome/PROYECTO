@@ -12,12 +12,11 @@ if response.status_code != 200:
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Buscamos la etuiqueta table donde esta la clasificación
-table = soup.find('table', id='top20')
+# Buscamos la etiqueta table donde esta la clasificación
+table = soup.find('table', class_='table table-striped table-top20')
 
 # Extraemos todo menos el encabezado
 rows = table.find_all('tr')[1:]
-print(rows)
 
 data = []
 
