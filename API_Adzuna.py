@@ -44,7 +44,6 @@ for tech, busc in lenguajes.items():
         jobs = data.get("results", [])
         if not jobs or pagina > 2:
             break
-        print(f"First job keys: {jobs[0].keys()}")  # Debug
 
         # Contar demanda total solo una vez
         total_ofertas = data.get("count", 0)
@@ -65,10 +64,9 @@ for tech, busc in lenguajes.items():
                 "salario_medio": salario_medio,
                 "demanda_total": total_ofertas
             })
-            print(f"Agregado: {job.get('title')}")  # Debug
 
         pagina += 1
-        time.sleep(1)  # Evitar rate limits
+        time.sleep(1)
         time.sleep(1)  # evita ser bloqueado por la API
 
 # Guardar resultados en CSV
