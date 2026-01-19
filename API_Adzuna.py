@@ -3,8 +3,8 @@ import pandas as pd
 import time
 import json
 
-API_KEY = "5b5d7a3ac709455f1022920b276dccf7"
-API_ID = "99936c6b"
+API_KEY = "" # Hay que poner las claves personales 
+API_ID = ""
 
 
 # Lista de lenguajes y búsquedas precisas para la API
