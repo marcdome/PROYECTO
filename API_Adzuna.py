@@ -9,7 +9,7 @@ API_ID = "99936c6b"
 
 # Lista de lenguajes y búsquedas precisas para la API
 
-csv = pd.read_csv("tiobe_lenguajes.csv")
+csv = pd.read_csv("data/tiobe_lenguajes.csv")
 lenguajes = csv["Lenguaje"]
 datos = []
 

@@ -37,6 +37,10 @@ for row in rows: #Iteramos sobre las filas
 
 # Crear el DataFrame
 df = pd.DataFrame(data, columns=['Posición', 'Lenguaje', 'Porcentaje'])
+#Corregimos nombres para la segunda aplicacion
+df['Lenguaje'][1] = "C programming language"
+df["Lenguaje"][17] = "Ada programming language"
+
 
 # Guardar en un archivo CSV
 df.to_csv('data/tiobe_lenguajes.csv', index=False)
