@@ -3,8 +3,8 @@ import pandas as pd
 import time
 import json
 
-API_KEY = "0e620dd5d98d157004f1cd3dc1c5ba29" # Hay que poner las claves personales 
-API_ID = "99936c6b"
+API_KEY = "" # Hay que poner las claves personales 
+API_ID = ""
 
 
 # Lista de lenguajes y búsquedas precisas para la API
@@ -30,7 +30,7 @@ for tech in lenguajes:
         data = response.json()
 
         jobs = data.get("results", [])
-        if not jobs or pagina > 2:
+        if not jobs:
             break
 
         # Contar demanda total solo una vez
@@ -52,7 +52,7 @@ for tech in lenguajes:
                 "salario_medio": salario_medio,
                 "demanda_total": total_ofertas
             })
-
+            print(f"Agregando {job.get("title")} a {tech}\n")
         pagina += 1
         time.sleep(1)
         time.sleep(1)  # evita ser bloqueado por la API
