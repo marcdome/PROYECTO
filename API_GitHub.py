@@ -3,7 +3,7 @@ import pandas as pd
 import time
 
 
-# token personal de GitHub para hacher mas requests 
+# token personal de GitHub para hacer mas requests 
 GITHUB_TOKEN = "" 
 
 headers = {}
