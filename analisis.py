@@ -56,7 +56,7 @@ def transformacion(p:str):
             return parts[0]
 
 ciudades_limpias = ciudades_filtradas.apply(transformacion)
-conteo = ciudades_limpias.value_counts(ascending=False).head(10)
+conteo = ciudades_limpias.value_counts(ascending=False).head(11)
 df_ciudades = conteo.reset_index(name="total")
 print(df_ciudades)
 
