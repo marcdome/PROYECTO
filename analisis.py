@@ -1,12 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt  
 
-azuna_data = pd.read_csv("data/adzuna_lenguajes.csv")
+adzuna_data = pd.read_csv("data/adzuna_lenguajes.csv")
 tiobe_data = pd.read_csv("data/tiobe_lenguajes.csv")
 github_data = pd.read_csv("data/github_stats.csv")
 
 # 1. ¿Los lenguajes más populares tienen más ofertas?
-data = azuna_data[["tecnologia", "demanda_total"]]
+data = adzuna_data[["tecnologia", "demanda_total"]]
 data = data.drop_duplicates()
 data = data.sort_values("demanda_total", ascending= False)
 
@@ -38,9 +38,8 @@ plt.show()
 
 # 3. ¿Cual es la ciudad que tiene mas ofertas?
 
-ciudades_filtradas = azuna_data[~azuna_data["ubicacion"].str.contains("España", na=False)]
+ciudades_filtradas = adzuna_data[~adzuna_data["ubicacion"].str.contains("España", na=False)]
 ciudades_filtradas = ciudades_filtradas["ubicacion"]
-print(ciudades_filtradas)
 def transformacion(p:str):
     parts = p.split(',')
     if len(parts) == 1:
@@ -55,11 +54,12 @@ def transformacion(p:str):
         else:
             return parts[0]
 
+adzuna_data["ubicacion"] = adzuna_data["ubicacion"].apply(transformacion)
 ciudades_limpias = ciudades_filtradas.apply(transformacion)
 conteo = ciudades_limpias.value_counts(ascending=False).head(11)
 df_ciudades = conteo.reset_index(name="total")
 df_ciudades.columns = ['ubicacion', 'total']
-print(df_ciudades)
+print(f"{df_ciudades} \n")
 
 df_ciudades.set_index('ubicacion')['total'].plot(kind= 'bar')
 plt.title('Ciudades con más ofertas de trabajo')
@@ -69,7 +69,7 @@ plt.show()
 
 # 4. ¿Que empresas ofertan más puestos de trabajo?
 
-empresas = azuna_data["empresa"]
+empresas = adzuna_data["empresa"]
 empresas = empresas.value_counts().sort_values(ascending=False)
 empresas = empresas.reset_index()
 empresas.columns = ['empresa', 'total']
@@ -87,11 +87,12 @@ empresa_mas_ofertante2 = empresas.iloc[2]['empresa']
 lista = [empresa_mas_ofertante, empresa_mas_ofertante1, empresa_mas_ofertante2]
 
 for i in lista:
-    empresas_filtradas = azuna_data[azuna_data["empresa"].str.contains(i, na=False)]
+    empresas_filtradas = adzuna_data[adzuna_data["empresa"].str.contains(i, na=False)]
+    ubicacion = empresas_filtradas["ubicacion"].iloc[0]
     empresas_filtradas = empresas_filtradas["tecnologia"].value_counts().sort_values(ascending=False)
     empresas_filtradas = empresas_filtradas.reset_index()
     empresas_filtradas.columns = ['Lenguaje', 'Total']
-    print(i)
+    print(f"{i}, se encuentra en {ubicacion}")
     print(f"{empresas_filtradas} \n")
     plt.figure(figsize=(10, 8))
     empresas_filtradas.set_index("Lenguaje")["Total"].plot(kind = "pie", labels=None, textprops={'fontsize': 11, 'weight': 'bold'})
@@ -102,4 +103,5 @@ for i in lista:
     plt.legend(etiquetas_leyenda, bbox_to_anchor=(1.05, 1), loc='upper left', frameon=True)
     plt.tight_layout()
     plt.show()
-    empresas_filtradas = azuna_data
+    empresas_filtradas = adzuna_data
+
