@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 import time
-import json
+
 
 API_KEY = "" # Hay que poner las claves personales 
 API_ID = ""
