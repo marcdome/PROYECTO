@@ -3,14 +3,16 @@ import pandas as pd
 import time
 
 
-API_KEY = "" # Hay que poner las claves personales 
-API_ID = ""
+API_KEY = "0e620dd5d98d157004f1cd3dc1c5ba29" # Hay que poner las claves personales 
+API_ID = "99936c6b"
 
 
 # Lista de lenguajes y búsquedas precisas para la API
 
 csv = pd.read_csv("data/tiobe_lenguajes.csv")
 lenguajes = csv["Lenguaje"]
+lenguajes[15] = "Golang"
+lenguajes[9] = "R data"
 datos = []
 
 for tech in lenguajes:

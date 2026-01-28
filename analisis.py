@@ -105,3 +105,5 @@ for i in lista:
     plt.show()
     empresas_filtradas = adzuna_data
 
+empresas_filtradas = adzuna_data[adzuna_data["empresa"].str.contains("Canonical", na=False)]
+print(empresas_filtradas['titulo'])
