@@ -82,9 +82,24 @@ plt.ylabel('Total de ofertas')
 plt.show()
 
 empresa_mas_ofertante = empresas.iloc[0]['empresa']
+empresa_mas_ofertante1 = empresas.iloc[1]['empresa']
+empresa_mas_ofertante2 = empresas.iloc[2]['empresa']
+lista = [empresa_mas_ofertante, empresa_mas_ofertante1, empresa_mas_ofertante2]
 
-empresas_filtradas = azuna_data[azuna_data["empresa"].str.contains(empresa_mas_ofertante, na=False)]
-empresas_filtradas = empresas_filtradas["tecnologia"].value_counts().sort_values(ascending=False)
-empresas_filtradas = empresas_filtradas.reset_index()
-empresas_filtradas.columns = ['Lenguaje', 'Total']
-print(empresas_filtradas)
+for i in lista:
+    empresas_filtradas = azuna_data[azuna_data["empresa"].str.contains(i, na=False)]
+    empresas_filtradas = empresas_filtradas["tecnologia"].value_counts().sort_values(ascending=False)
+    empresas_filtradas = empresas_filtradas.reset_index()
+    empresas_filtradas.columns = ['Lenguaje', 'Total']
+    print(i)
+    print(f"{empresas_filtradas} \n")
+    plt.figure(figsize=(10, 8))
+    empresas_filtradas.set_index("Lenguaje")["Total"].plot(kind = "pie", labels=None, textprops={'fontsize': 11, 'weight': 'bold'})
+    plt.title(i, fontsize=14, fontweight='bold')
+    plt.ylabel('')
+    total = empresas_filtradas['Total'].sum()
+    etiquetas_leyenda = [f"{row['Lenguaje']} {row['Total']/total*100:.2f}%" for idx, row in empresas_filtradas.iterrows()]
+    plt.legend(etiquetas_leyenda, bbox_to_anchor=(1.05, 1), loc='upper left', frameon=True)
+    plt.tight_layout()
+    plt.show()
+    empresas_filtradas = azuna_data
